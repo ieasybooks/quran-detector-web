@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Quran Detector — Annotate</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="bg" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">
+          <span class="mark-inner"></span>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title" id="t_title">كاشف الاقتباسات القرآنية</div>
+          <div class="brand-subtitle" id="t_subtitle">وسم النص بمراجع الآيات عبر API</div>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="chip" id="langToggle" type="button" aria-label="Toggle language">
+          <span class="chip-dot" aria-hidden="true"></span>
+          <span id="t_lang">العربية</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <div class="card-head">
+          <h1 class="h1" id="t_h1">وسم النص</h1>
+          <p class="muted" id="t_hint">
+            الصق النص هنا، ثم اضغط «وسم». سيتم إرسال الطلب مباشرة إلى خدمة FastAPI.
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="field">
+            <label for="inputText" class="label" id="t_inputLabel">النص</label>
+            <textarea
+              id="inputText"
+              class="textarea"
+              rows="10"
+              placeholder="اكتب أو الصق نصًا عربيًا (حتى 5000 حرف)..."
+              spellcheck="false"
+            ></textarea>
+            <div class="field-row">
+              <div class="status small" id="charCount">0 / 5000</div>
+              <div class="actions">
+                <button class="btn ghost btn-sm" id="sampleBtn" type="button">نص تجريبي</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="outputText" class="label" id="t_outputLabel">النتيجة</label>
+            <textarea id="outputText" class="textarea" rows="10" readonly></textarea>
+            <div class="field-row">
+              <div class="status" id="status" role="status" aria-live="polite"></div>
+              <div class="actions">
+                <button class="btn ghost" id="copyBtn" type="button" disabled>
+                  <span id="t_copy">نسخ</span>
+                </button>
+                <button class="btn ghost" id="clearBtn" type="button">
+                  <span id="t_clear">مسح</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <details class="advanced" id="advanced">
+          <summary class="advanced-summary">
+            <span id="t_adv">إعدادات متقدمة</span>
+            <span class="chev" aria-hidden="true"></span>
+          </summary>
+
+          <div class="advanced-body">
+            <div class="row">
+              <div class="field">
+                <label class="label" for="apiBase" id="t_apiBase">عنوان الـ API</label>
+                <input
+                  id="apiBase"
+                  class="input"
+                  type="url"
+                  inputmode="url"
+                  placeholder="مثال: http://127.0.0.1:8000"
+                />
+                <div class="muted small" id="t_apiNote">
+                  افتراضيًا يتم استخدام نفس الدومين: <code>/v1/annotate</code>
+                </div>
+              </div>
+            </div>
+
+            <div class="row settings">
+              <label class="toggle">
+                <input id="findErrors" type="checkbox" checked />
+                <span class="toggle-ui" aria-hidden="true"></span>
+                <span class="toggle-text" id="t_findErrors">تصحيح الأخطاء الإملائية</span>
+              </label>
+
+              <label class="toggle">
+                <input id="findMissing" type="checkbox" />
+                <span class="toggle-ui" aria-hidden="true"></span>
+                <span class="toggle-text" id="t_findMissing">اكتشاف الكلمات الناقصة</span>
+              </label>
+
+              <div class="field inline">
+                <label class="label" for="allowedError" id="t_allowedError">نسبة الخطأ المسموحة</label>
+                <input id="allowedError" class="input" type="number" min="0" max="1" step="0.05" value="0.25" />
+              </div>
+
+              <div class="field inline">
+                <label class="label" for="minMatch" id="t_minMatch">الحد الأدنى للتطابق</label>
+                <input id="minMatch" class="input" type="number" min="1" step="1" value="3" />
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <div class="footer-row">
+          <button class="btn primary" id="submitBtn" type="button">
+            <span id="t_submit">وسم</span>
+          </button>
+
+          <div class="muted small" id="t_privacy">
+            يتم إرسال النص إلى الـ API مباشرة من المتصفح (لا يوجد وسيط).
+          </div>
+        </div>
+      </section>
+
+      <section class="card mini">
+        <h2 class="h2" id="t_about">عن الأداة</h2>
+        <p class="muted" id="t_aboutBody">
+          تعتمد الخوارزمية على QDetect لاكتشاف مقاطع الآيات داخل النصوص العربية ثم إرجاع النص مع مرجع السورة والآية.
+        </p>
+        <div class="links">
+          <a class="a" href="https://github.com/ieasybooks/quran-detector" target="_blank" rel="noreferrer"
+            >Library</a
+          >
+          <a class="a" href="https://quran-detector-api.ieasybooks.com/" target="_blank" rel="noreferrer">API</a>
+          <a class="a" href="https://www.sciencedirect.com/science/article/pii/S1877050921012321" target="_blank" rel="noreferrer"
+            >Paper</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <div class="loading" id="loading" aria-hidden="true">
+      <div class="loading-card" role="alert" aria-live="assertive">
+        <div class="spinner" aria-hidden="true">
+          <div class="spinner-ring"></div>
+          <div class="spinner-star"></div>
+        </div>
+        <div class="loading-text">
+          <div class="loading-title" id="t_waitTitle">لحظات…</div>
+          <div class="muted" id="t_waitBody">نقوم بوسم النص الآن.</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
