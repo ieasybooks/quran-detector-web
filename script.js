@@ -53,7 +53,7 @@ const I18N = {
   },
   en: {
     langLabel: "English",
-    title: "Quran Detector",
+    title: "Quranic Citation Detector",
     subtitle: "Annotate text via the API",
     h1: "Annotate Text",
     hint: "Paste your text, then press “Annotate”. The request is sent directly to the FastAPI service.",
@@ -112,6 +112,7 @@ function setLang(lang) {
   localStorage.setItem("qd_lang", lang);
   const t = I18N[lang];
 
+  document.title = t.title;
   document.documentElement.lang = lang === "ar" ? "ar" : "en";
   document.body.dir = lang === "ar" ? "rtl" : "ltr";
   document.documentElement.dir = document.body.dir;
