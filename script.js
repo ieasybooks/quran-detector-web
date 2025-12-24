@@ -20,9 +20,9 @@ const I18N = {
   ar: {
     langLabel: "العربية",
     title: "كاشف الاقتباسات القرآنية",
-    subtitle: "وسم النص بمراجع الآيات عبر API",
+    subtitle: "وسم النص بمراجع الآيات",
     h1: "وسم النص",
-    hint: "الصق النص هنا، ثم اضغط «وسم». سيتم إرسال الطلب مباشرة إلى خدمة FastAPI.",
+    hint: "الصق النص هنا، ثم اضغط «وسم».",
     inputLabel: "النص",
     inputPlaceholder: "اكتب أو الصق نصًا عربيًا (حتى 5000 حرف)...",
     outputLabel: "النتيجة",
@@ -30,33 +30,36 @@ const I18N = {
     copy: "نسخ",
     clear: "مسح",
     adv: "إعدادات متقدمة",
-    apiBase: "عنوان الـ API",
-    apiNote: "افتراضيًا يتم استخدام نفس الدومين: /v1/annotate",
+    apiBase: "رابط الخدمة",
+    apiNote: "اتركه كما هو ما لم تكن تستخدم خادمًا مختلفًا.",
     findErrors: "تصحيح الأخطاء الإملائية",
     findMissing: "اكتشاف الكلمات الناقصة",
     allowedError: "نسبة الخطأ المسموحة",
     minMatch: "الحد الأدنى للتطابق",
     submit: "وسم",
-    privacy: "يتم إرسال النص إلى الـ API مباشرة من المتصفح (لا يوجد وسيط).",
+    privacy: "يتم إرسال النص مباشرة من المتصفح إلى الخدمة.",
     waitTitle: "لحظات…",
     waitBody: "نقوم بوسم النص الآن.",
     about: "عن الأداة",
     aboutBody:
       "تعتمد الخوارزمية على QDetect لاكتشاف مقاطع الآيات داخل النصوص العربية ثم إرجاع النص مع مرجع السورة والآية.",
+    linkLib: "المكتبة",
+    linkService: "الخدمة",
+    linkPaper: "الورقة العلمية",
     statusReady: "جاهز.",
     statusDone: "تم وسم النص بنجاح.",
     statusCopied: "تم النسخ إلى الحافظة.",
     statusCleared: "تم المسح.",
     statusEmpty: "أضف نصًا أولًا.",
     statusTooLong: "النص طويل جدًا (الحد الأقصى 5000 حرف).",
-    statusError: "حدث خطأ أثناء الاتصال بالـ API.",
+    statusError: "حدث خطأ أثناء تنفيذ الطلب.",
   },
   en: {
     langLabel: "English",
     title: "Quranic Citation Detector",
-    subtitle: "Annotate text via the API",
+    subtitle: "Annotate text with verse references",
     h1: "Annotate Text",
-    hint: "Paste your text, then press “Annotate”. The request is sent directly to the FastAPI service.",
+    hint: "Paste your text, then press “Annotate”.",
     inputLabel: "Input Text",
     inputPlaceholder: "Type or paste text (up to 5000 chars)...",
     outputLabel: "Output",
@@ -64,26 +67,29 @@ const I18N = {
     copy: "Copy",
     clear: "Clear",
     adv: "Advanced settings",
-    apiBase: "API base URL",
-    apiNote: "Defaults to same-origin: /v1/annotate",
+    apiBase: "Service URL",
+    apiNote: "Leave it as-is unless you use a different server.",
     findErrors: "Spelling correction",
     findMissing: "Missing-word detection",
     allowedError: "Allowed error ratio",
     minMatch: "Minimum match",
     submit: "Annotate",
-    privacy: "Text is sent directly from your browser to the API (no proxy).",
+    privacy: "Text is sent directly from your browser to the service.",
     waitTitle: "Just a moment…",
     waitBody: "Annotating your text.",
     about: "About",
     aboutBody:
       "Based on QDetect to detect Quranic verse fragments in Arabic text and return the text annotated with surah/ayah references.",
+    linkLib: "Library",
+    linkService: "Service",
+    linkPaper: "Paper",
     statusReady: "Ready.",
     statusDone: "Annotated successfully.",
     statusCopied: "Copied to clipboard.",
     statusCleared: "Cleared.",
     statusEmpty: "Please enter some text first.",
     statusTooLong: "Text is too long (max 5000 chars).",
-    statusError: "Request failed. Check the API URL and CORS.",
+    statusError: "Request failed. Please try again or check the service URL.",
   },
 };
 
@@ -128,7 +134,7 @@ function setLang(lang) {
   document.getElementById("t_clear").textContent = t.clear;
   document.getElementById("t_adv").textContent = t.adv;
   document.getElementById("t_apiBase").textContent = t.apiBase;
-  document.getElementById("t_apiNote").innerHTML = `${t.apiNote.replace("/v1/annotate", "<code>/v1/annotate</code>")}`;
+  document.getElementById("t_apiNote").textContent = t.apiNote;
   document.getElementById("t_findErrors").textContent = t.findErrors;
   document.getElementById("t_findMissing").textContent = t.findMissing;
   document.getElementById("t_allowedError").textContent = t.allowedError;
@@ -140,6 +146,9 @@ function setLang(lang) {
   document.getElementById("t_about").textContent = t.about;
   document.getElementById("t_aboutBody").textContent = t.aboutBody;
   document.getElementById("t_lang").textContent = t.langLabel;
+  document.getElementById("t_linkLib").textContent = t.linkLib;
+  document.getElementById("t_linkService").textContent = t.linkService;
+  document.getElementById("t_linkPaper").textContent = t.linkPaper;
 
   UI.inputText.placeholder = t.inputPlaceholder;
 }

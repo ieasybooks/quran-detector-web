@@ -28,7 +28,7 @@
         </div>
         <div class="brand-text">
           <div class="brand-title" id="t_title">كاشف الاقتباسات القرآنية</div>
-          <div class="brand-subtitle" id="t_subtitle">وسم النص بمراجع الآيات عبر API</div>
+          <div class="brand-subtitle" id="t_subtitle">وسم النص بمراجع الآيات</div>
         </div>
       </div>
 
@@ -44,9 +44,7 @@
       <section class="card">
         <div class="card-head">
           <h1 class="h1" id="t_h1">وسم النص</h1>
-          <p class="muted" id="t_hint">
-            الصق النص هنا، ثم اضغط «وسم». سيتم إرسال الطلب مباشرة إلى خدمة FastAPI.
-          </p>
+          <p class="muted" id="t_hint">الصق النص هنا، ثم اضغط «وسم».</p>
         </div>
 
         <div class="grid">
@@ -93,7 +91,7 @@
           <div class="advanced-body">
             <div class="row">
               <div class="field">
-                <label class="label" for="apiBase" id="t_apiBase">عنوان الـ API</label>
+                <label class="label" for="apiBase" id="t_apiBase">رابط الخدمة</label>
                 <input
                   id="apiBase"
                   class="input"
@@ -101,9 +99,7 @@
                   inputmode="url"
                   placeholder="مثال: http://127.0.0.1:8000"
                 />
-                <div class="muted small" id="t_apiNote">
-                  افتراضيًا يتم استخدام نفس الدومين: <code>/v1/annotate</code>
-                </div>
+                <div class="muted small" id="t_apiNote">اتركه كما هو ما لم تكن تستخدم خادمًا مختلفًا.</div>
               </div>
             </div>
 
@@ -138,9 +134,7 @@
             <span id="t_submit">وسم</span>
           </button>
 
-          <div class="muted small" id="t_privacy">
-            يتم إرسال النص إلى الـ API مباشرة من المتصفح (لا يوجد وسيط).
-          </div>
+          <div class="muted small" id="t_privacy">يتم إرسال النص مباشرة من المتصفح إلى الخدمة.</div>
         </div>
       </section>
 
@@ -151,11 +145,17 @@
         </p>
         <div class="links">
           <a class="a" href="https://github.com/ieasybooks/quran-detector" target="_blank" rel="noreferrer"
-            >Library</a
+            ><span id="t_linkLib">المكتبة</span></a
           >
-          <a class="a" href="https://quran-detector-api.ieasybooks.com/" target="_blank" rel="noreferrer">API</a>
-          <a class="a" href="https://www.sciencedirect.com/science/article/pii/S1877050921012321" target="_blank" rel="noreferrer"
-            >Paper</a
+          <a class="a" href="https://quran-detector-api.ieasybooks.com/" target="_blank" rel="noreferrer"
+            ><span id="t_linkService">الخدمة</span></a
+          >
+          <a
+            class="a"
+            href="https://www.sciencedirect.com/science/article/pii/S1877050921012321"
+            target="_blank"
+            rel="noreferrer"
+            ><span id="t_linkPaper">الورقة العلمية</span></a
           >
         </div>
       </section>
