@@ -1,0 +1,18 @@
+{
+  "name": "كاشف الاقتباسات القرآنية",
+  "short_name": "Quran Detector",
+  "description": "واجهة بسيطة لاكتشاف الاقتباسات القرآنية وإرجاع النص مع مراجع الآيات.",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#070B10",
+  "theme_color": "#0D6B4C",
+  "icons": [
+    {
+      "src": "./favicon.svg?v=2025-12-24-4",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

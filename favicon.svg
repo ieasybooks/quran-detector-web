@@ -1,37 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
   <defs>
-    <linearGradient id="bg" x1="10" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#2bd4a3" stop-opacity="0.22" />
-      <stop offset="1" stop-color="#d9b35a" stop-opacity="0.22" />
-    </linearGradient>
-    <linearGradient id="ring" x1="16" y1="16" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+    <linearGradient id="ring" x1="14" y1="12" x2="52" y2="52" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#2bd4a3" />
       <stop offset="1" stop-color="#d9b35a" />
     </linearGradient>
-    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="0.6" />
-    </filter>
   </defs>
 
-  <!-- Card / mark background -->
-  <rect x="6" y="6" width="52" height="52" rx="16" fill="url(#bg)" stroke="rgba(255,255,255,0.22)" />
+  <!-- Dark card background for contrast on all launchers -->
+  <rect x="6" y="6" width="52" height="52" rx="16" fill="#070B10" stroke="rgba(255,255,255,0.18)" />
 
-  <!-- Inner circle -->
-  <circle cx="32" cy="32" r="11" fill="none" stroke="rgba(255,255,255,0.92)" stroke-width="4" />
-  <circle cx="32" cy="32" r="9" fill="none" stroke="url(#ring)" stroke-width="3" stroke-opacity="0.18" />
-
-  <!-- Dashed outer ring (rotated) -->
+  <!-- Outer ring -->
   <g transform="rotate(18 32 32)">
-    <circle
-      cx="32"
-      cy="32"
-      r="19"
-      fill="none"
-      stroke="rgba(255,255,255,0.36)"
-      stroke-width="2"
-      stroke-dasharray="2 5"
-      filter="url(#soft)"
-    />
+    <circle cx="32" cy="32" r="19" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-dasharray="2 5" />
   </g>
-</svg>
 
+  <!-- Main mark -->
+  <circle cx="32" cy="32" r="11" fill="none" stroke="rgba(255,255,255,0.92)" stroke-width="4" />
+  <circle cx="32" cy="32" r="10" fill="none" stroke="url(#ring)" stroke-width="3" />
+</svg>
