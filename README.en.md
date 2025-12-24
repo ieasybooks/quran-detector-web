@@ -1,5 +1,9 @@
-[![ar](https://img.shields.io/badge/lang-ar-brightgreen.svg)](README.md)
-[![en](https://img.shields.io/badge/lang-en-red.svg)](README.en.md)
+<div align="center">
+
+  [![ar](https://img.shields.io/badge/lang-ar-brightgreen.svg)](README.md)
+  [![en](https://img.shields.io/badge/lang-en-red.svg)](README.en.md)
+
+</div>
 
 # quran-detector-web
 
@@ -73,4 +77,3 @@ By default, the UI uses `https://quran-detector-api.ieasybooks.com/` (saved in `
 You can override it in **Advanced settings**.
 
 If you point to a different API host, it must allow your origin via CORS (`QD_API_CORS_ORIGINS` on the API service).
-

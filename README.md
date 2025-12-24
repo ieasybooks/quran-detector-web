@@ -1,5 +1,9 @@
-[![ar](https://img.shields.io/badge/lang-ar-brightgreen.svg)](README.md)
-[![en](https://img.shields.io/badge/lang-en-red.svg)](README.en.md)
+<div align="center">
+
+  [![ar](https://img.shields.io/badge/lang-ar-brightgreen.svg)](README.md)
+  [![en](https://img.shields.io/badge/lang-en-red.svg)](README.en.md)
+
+</div>
 
 <h1 dir="rtl">quran-detector-web</h1>
 
@@ -78,4 +82,3 @@
 <p dir="rtl">
 إذا استخدمت عنوان API مختلف، يجب أن يسمح بالوصول من نطاق موقعك عبر CORS (متغير <code dir="ltr">QD_API_CORS_ORIGINS</code> في خدمة الـ API).
 </p>
-
