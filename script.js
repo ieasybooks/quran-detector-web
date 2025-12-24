@@ -95,10 +95,7 @@ const DEFAULT_SAMPLE_AR =
   "قال تعالى: وَاصْبِرْ وَمَا صَبْرُكَ إِلَّا بِاللَّهِ وَلَا تَحْزَنْ عَلَيْهِمْ.\n\n" +
   "ومن الأدعية: ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.";
 
-const DEFAULT_SAMPLE_EN =
-  "Here is a sample paragraph with Arabic Quranic citations:\n\n" +
-  "He said: قال تعالى: وَاصْبِرْ وَمَا صَبْرُكَ إِلَّا بِاللَّهِ وَلَا تَحْزَنْ عَلَيْهِمْ.\n\n" +
-  "And in supplications: ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.";
+const DEFAULT_SAMPLE_EN = DEFAULT_SAMPLE_AR;
 
 function setStatus(message, kind = "") {
   UI.status.className = `status ${kind}`.trim();
