@@ -1,14 +1,14 @@
 /* global self */
 
-const CACHE_NAME = "qd-web-v5";
+const CACHE_NAME = "qd-web-v6";
 
 const ASSETS = [
   "./",
   "./index.html",
-  "./style.css?v=2025-12-24-7",
-  "./script.js?v=2025-12-24-7",
-  "./favicon.svg?v=2025-12-24-7",
-  "./manifest.webmanifest?v=2025-12-24-7",
+  "./style.css?v=2025-12-24-8",
+  "./script.js?v=2025-12-24-8",
+  "./favicon.svg?v=2025-12-24-8",
+  "./manifest.webmanifest?v=2025-12-24-8",
 ];
 
 self.addEventListener("install", (event) => {
