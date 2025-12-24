@@ -480,7 +480,15 @@ html[lang="ar"] .textarea {
   transition: transform 180ms ease;
 }
 
+html[dir="rtl"] .chev {
+  transform: rotate(135deg);
+}
+
 details[open] .chev {
+  transform: rotate(45deg);
+}
+
+html[dir="rtl"] details[open] .chev {
   transform: rotate(45deg);
 }
 
