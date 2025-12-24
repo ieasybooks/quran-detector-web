@@ -37,7 +37,6 @@ const I18N = {
     allowedError: "نسبة الخطأ المسموحة",
     minMatch: "الحد الأدنى للتطابق",
     submit: "اكتشاف",
-    privacy: "يتم إرسال النص مباشرة من المتصفح إلى الخدمة.",
     waitTitle: "لحظات…",
     waitBody: "نقوم باكتشاف الاقتباسات الآن.",
     about: "عن الأداة",
@@ -74,7 +73,6 @@ const I18N = {
     allowedError: "Allowed error ratio",
     minMatch: "Minimum match",
     submit: "Detect",
-    privacy: "Text is sent directly from your browser to the service.",
     waitTitle: "Just a moment…",
     waitBody: "Detecting citations.",
     about: "About",
@@ -97,7 +95,10 @@ const DEFAULT_SAMPLE_AR =
   "قال تعالى: وَاصْبِرْ وَمَا صَبْرُكَ إِلَّا بِاللَّهِ وَلَا تَحْزَنْ عَلَيْهِمْ.\n\n" +
   "ومن الأدعية: ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.";
 
-const DEFAULT_SAMPLE_EN = "Paste Arabic text here. English UI is supported, but detection targets Arabic content.";
+const DEFAULT_SAMPLE_EN =
+  "Here is a sample paragraph with Arabic Quranic citations:\n\n" +
+  "He said: قال تعالى: وَاصْبِرْ وَمَا صَبْرُكَ إِلَّا بِاللَّهِ وَلَا تَحْزَنْ عَلَيْهِمْ.\n\n" +
+  "And in supplications: ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار.";
 
 function setStatus(message, kind = "") {
   UI.status.className = `status ${kind}`.trim();
@@ -140,7 +141,6 @@ function setLang(lang) {
   document.getElementById("t_allowedError").textContent = t.allowedError;
   document.getElementById("t_minMatch").textContent = t.minMatch;
   document.getElementById("t_submit").textContent = t.submit;
-  document.getElementById("t_privacy").textContent = t.privacy;
   document.getElementById("t_waitTitle").textContent = t.waitTitle;
   document.getElementById("t_waitBody").textContent = t.waitBody;
   document.getElementById("t_about").textContent = t.about;
@@ -285,8 +285,15 @@ function init() {
   setStatus(I18N[getLang()].statusReady);
 
   UI.langToggle.addEventListener("click", () => {
-    const next = getLang() === "ar" ? "en" : "ar";
+    const current = getLang();
+    const next = current === "ar" ? "en" : "ar";
     setLang(next);
+    if (!UI.loading || UI.loading.dataset.open !== "true") {
+      const currentReady = I18N[current].statusReady;
+      if (!UI.status.textContent || UI.status.textContent === currentReady) {
+        setStatus(I18N[next].statusReady);
+      }
+    }
   });
 
   UI.apiBase.addEventListener("change", saveApiBase);
